@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:cardCornerRadius="4dp"
+    android:cardMaxElevation="4dp"
+    android:cardElevation="2dp"
+    android:contentPadding="5dp"
+    android:padding="5dp"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/item_image"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/item_resumen"
+                android:text="resumen"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/item_title"
+                android:text="Titulo"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_autores"
+                android:text="@string/autores"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_edicion"
+                android:text="Edicion"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_editorial"
+                android:text="Editorial"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_isbn"
+                android:text="ISBN"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/item_tags"
+                android:text="tags"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
