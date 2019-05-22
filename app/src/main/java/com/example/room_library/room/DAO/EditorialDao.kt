@@ -2,13 +2,13 @@ package com.example.room_library.room.DAO
 
 import androidx.room.Dao
 import androidx.room.Insert
-import com.example.room_library.room.Entities.Book
+import com.example.room_library.room.Entities.Editorial
 
 @Dao
-interface BookDao {
+interface EditorialDao {
 
     @Insert
     //suspend = corrutina
-    suspend fun insert(book: Book)
+    suspend fun insert(editorial: Editorial)
 
 }
