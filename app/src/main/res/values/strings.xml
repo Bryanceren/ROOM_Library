@@ -19,4 +19,11 @@ limitations under the License. -->
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="autores">Autores</string>
+    <string name="resumen">resumen</string>
+    <string name="titulo">Titulo</string>
+    <string name="edicion">Edicion</string>
+    <string name="editorial">Editorial</string>
+    <string name="isbn">ISBN</string>
+    <string name="tags">tags</string>
+    <string name="n_a_value">N/A</string>
 </resources>
