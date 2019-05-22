@@ -5,10 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Autor")
-data class Autor(
-    @ColumnInfo(name = "A_nombre") var nombre : String,
-    @ColumnInfo(name = "A_apellido") var apellido : String
-){
-    @PrimaryKey(autoGenerate = true)
-    var id:Long =0
-}
+class Autor (
+    @PrimaryKey(autoGenerate = true) var id : Long,
+    @ColumnInfo(name = "Nombre") var nombre : String,
+    @ColumnInfo(name = "Apellido") var apellido : String
+)
