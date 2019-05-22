@@ -15,6 +15,6 @@ interface BookDao {
 
 
     @Query("SELECT * FROM Libro ORDER BY ASC")
-    fun getALLBooks():LiveData<List<Book>>
+    fun getAllBooks():LiveData<List<Book>>
 
 }
