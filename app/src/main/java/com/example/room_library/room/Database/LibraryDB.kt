@@ -12,6 +12,7 @@ import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
 import com.example.room_library.room.Entities.Editorial
 import com.example.room_library.room.Entities.Tag
+import kotlinx.coroutines.CoroutineScope
 
 
 @Database(entities = [Autor::class, Book::class ,Editorial::class, Tag::class], version = 2, exportSchema = false)
