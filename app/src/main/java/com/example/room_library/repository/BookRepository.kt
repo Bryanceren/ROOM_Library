@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import com.example.room_library.room.DAO.AutorDao
 import com.example.room_library.room.DAO.BookDao
 import com.example.room_library.room.DAO.EditorialDao
+import com.example.room_library.room.DAO.TagDao
 import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
 import com.example.room_library.room.Entities.Editorial
+import com.example.room_library.room.Entities.Tag
 
 class BookRepository(private val bookDao : BookDao, private val autorDao: AutorDao,
-                     private val editorialDao : EditorialDao) {
+                     private val editorialDao : EditorialDao, private val tagDao: TagDao) {
 
     val allBooks : LiveData<List<Book>> = bookDao.getAllBooks()
 
@@ -27,6 +29,11 @@ class BookRepository(private val bookDao : BookDao, private val autorDao: AutorD
     @WorkerThread
     suspend fun insertEditorial(editorial: Editorial){
         editorialDao.insert(editorial)
+    }
+
+    @WorkerThread
+    suspend fun insertTag(tag: Tag){
+        tagDao.insert(tag)
     }
 
 }

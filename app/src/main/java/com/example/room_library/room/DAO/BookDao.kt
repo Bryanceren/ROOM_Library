@@ -15,7 +15,7 @@ interface BookDao {
     suspend fun insert(book: Book)
 
 
-    @Query("SELECT * FROM Libro ORDER BY ASC")
+    @Query("SELECT * FROM Libro ")
     fun getAllBooks():LiveData<List<Book>>
 
 }

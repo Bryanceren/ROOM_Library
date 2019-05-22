@@ -9,6 +9,5 @@ import com.example.room_library.room.Entities.Tag
 @Dao
 interface TagDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    //suspend = corrutina
     suspend fun insert(tag: Tag)
 }
