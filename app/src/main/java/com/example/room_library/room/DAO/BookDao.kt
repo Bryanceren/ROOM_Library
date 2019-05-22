@@ -15,7 +15,10 @@ interface BookDao {
     suspend fun insert(book: Book)
 
 
-    @Query("SELECT * FROM Libro ")
+    @Query("SELECT * FROM Libro")
     fun getAllBooks():LiveData<List<Book>>
+
+    /*@Query("SELECT * FROM Libro where L_tag ")
+    fun getBookByTag(tag: String)*/
 
 }
