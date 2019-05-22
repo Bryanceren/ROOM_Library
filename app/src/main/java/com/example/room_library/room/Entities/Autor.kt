@@ -6,9 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Autor")
 data class Autor(
+    @PrimaryKey(autoGenerate = true)
+    var id:Long =0,
     @ColumnInfo(name = "A_nombre") var nombre : String,
     @ColumnInfo(name = "A_apellido") var apellido : String
-){
-    @PrimaryKey(autoGenerate = true)
-    var id:Long =0
-}
+)
