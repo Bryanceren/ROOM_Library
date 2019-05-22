@@ -3,10 +3,11 @@
 
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:cardCornerRadius="4dp"
-    android:cardMaxElevation="4dp"
-    android:cardElevation="2dp"
-    android:contentPadding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    app:cardMaxElevation="4dp"
+    app:cardElevation="2dp"
+    app:contentPadding="5dp"
     android:padding="5dp"
     android:layout_margin="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
