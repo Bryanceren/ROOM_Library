@@ -7,17 +7,20 @@ import androidx.room.RoomDatabase
 import com.example.room_library.room.DAO.AutorDao
 import com.example.room_library.room.DAO.BookDao
 import com.example.room_library.room.DAO.EditorialDao
+import com.example.room_library.room.DAO.TagDao
 import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
 import com.example.room_library.room.Entities.Editorial
+import com.example.room_library.room.Entities.Tag
 
 
-@Database(entities = [Autor::class, Book::class ,Editorial::class], version = 1, exportSchema = false)
+@Database(entities = [Autor::class, Book::class ,Editorial::class, Tag::class], version = 2, exportSchema = false)
 public abstract class LibraryDB: RoomDatabase(){
 
     abstract fun autorDao():AutorDao
     abstract fun bookDao(): BookDao
     abstract fun editorialDao() : EditorialDao
+    abstract fun tagDao() : TagDao
     //Todos los DAO
 
     companion object {
