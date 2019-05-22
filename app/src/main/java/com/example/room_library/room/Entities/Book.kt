@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = Tag::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("tag"),
+            childColumns = arrayOf("L_tag"),
             onDelete = CASCADE
         )
     )
@@ -23,5 +23,5 @@ class Book(
     @ColumnInfo(name = "L_titulo") var titulo : String,
     @ColumnInfo(name = "L_edicion") var edicion : String,
     @ColumnInfo(name = "L_resumen") var resumen : String,
-    @ColumnInfo(name = "L_tag") var tag : Long
+    @ColumnInfo(name = "L_tag") var tag : String
 )
