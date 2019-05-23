@@ -1,7 +1,8 @@
-package com.example.room_library
+package com.example.room_library.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.room_library.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -13,4 +13,5 @@
     <string name="isbn">ISBN</string>
     <string name="tags">tags</string>
     <string name="n_a_value">N/A</string>
+    <string name="caratula">caratula</string>
 </resources>
