@@ -16,7 +16,7 @@ import androidx.room.PrimaryKey
         )
     )
 )
-class Book(
+data class Book(
     @PrimaryKey(autoGenerate = true) var id :Long,
     @ColumnInfo(name = "L_isbn") var ISBN : String,
     @ColumnInfo(name = "L_caratula")var caratula : String,
