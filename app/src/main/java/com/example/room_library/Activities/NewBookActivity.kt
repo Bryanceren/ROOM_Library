@@ -40,6 +40,7 @@ class NewBookActivity : AppCompatActivity() {
     private lateinit var editTagsView: EditText
     private lateinit var editCaratulaView: EditText
 
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_book)

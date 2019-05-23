@@ -21,6 +21,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:src="@drawable/ic_launcher_background"/>
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -268,6 +269,12 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_fav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="marcar como favorito" />
 
 
 </LinearLayout>
