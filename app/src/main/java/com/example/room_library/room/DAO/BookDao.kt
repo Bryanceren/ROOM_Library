@@ -18,7 +18,7 @@ interface BookDao {
     @Query("SELECT * FROM Libro")
     fun getAllBooks():LiveData<List<Book>>
 
-    /*@Query("SELECT * FROM Libro where L_tag ")
-    fun getBookByTag(tag: String)*/
+    @Query("SELECT * FROM Libro WHERE Libro.L_Favorito = 1")
+    fun getFavoriteBooks(): LiveData<List<Book>>
 
 }

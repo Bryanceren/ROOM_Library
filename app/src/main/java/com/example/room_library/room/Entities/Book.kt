@@ -13,5 +13,6 @@ data class Book(
     @ColumnInfo(name = "L_caratula")var caratula : String,
     @ColumnInfo(name = "L_titulo") var titulo : String,
     @ColumnInfo(name = "L_edicion") var edicion : String,
-    @ColumnInfo(name = "L_resumen") var resumen : String
+    @ColumnInfo(name = "L_resumen") var resumen : String,
+    @ColumnInfo(name = "L_Favorito") var favorito : Int
 )
