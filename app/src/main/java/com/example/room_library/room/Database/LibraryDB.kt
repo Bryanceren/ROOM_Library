@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.room_library.room.DAO.AutorDao
 import com.example.room_library.room.DAO.BookDao
 import com.example.room_library.room.DAO.EditorialDao
@@ -13,6 +14,8 @@ import com.example.room_library.room.Entities.Book
 import com.example.room_library.room.Entities.Editorial
 import com.example.room_library.room.Entities.Tag
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @Database(entities = [Autor::class, Book::class ,Editorial::class, Tag::class], version = 2, exportSchema = false)

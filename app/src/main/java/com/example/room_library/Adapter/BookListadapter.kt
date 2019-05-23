@@ -1,7 +1,6 @@
-package com.example.room_library
+package com.example.room_library.Adapter
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.room_library.Activities.MainActivity
+import com.example.room_library.R
 import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
-import kotlinx.android.synthetic.main.recyclerview_item.view.*
+import com.example.room_library.room.Entities.Editorial
+import com.example.room_library.room.Entities.Tag
 
 class BookListadapter internal constructor(
     context: Context
@@ -21,12 +23,15 @@ class BookListadapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var books = emptyList<Book>()
     private var autores= emptyList<Autor>()
+    private var editoriales= emptyList<Editorial>()
+    private var tags= emptyList<Tag>()
 
 
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val bookitemViewimage: ImageView = itemView.findViewById(R.id.item_image)
         val bookitemViewresumen: TextView = itemView.findViewById(R.id.item_resumen)
         val bookitemViewtitle: TextView = itemView.findViewById(R.id.item_title)
+        val bookitemVieweditorial: TextView = itemView.findViewById(R.id.item_editorial)
         val bookitemViewautores: TextView = itemView.findViewById(R.id.item_autores)
         val bookitemViewedicion: TextView = itemView.findViewById(R.id.item_edicion)
         val bookitemViewisbn: TextView = itemView.findViewById(R.id.item_isbn)
@@ -41,23 +46,41 @@ class BookListadapter internal constructor(
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val current = books[position]
         val current2= autores[position]
+        val current3= editoriales[position]
+        val current4= tags[position]
 
-        Glide.with(holder.bookitemViewimage.context)
+        Glide.with(holder.bookitemViewresumen.context)
             .load(current.caratula)
             .into(holder.bookitemViewimage)
-
         holder.bookitemViewresumen.text = current.resumen
         holder.bookitemViewtitle.text = current.titulo
         holder.bookitemViewedicion.text = current.edicion
-        holder.bookitemViewtags.text = current.tag
+        holder.bookitemViewtags.text = current4.Tag
         holder.bookitemViewisbn.text = current.ISBN
         holder.bookitemViewautores.text = current2.nombre
+        holder.bookitemVieweditorial.text=current3.name
     }
 
     internal fun setBooks(books: List<Book>){
         this.books = books
+        this.autores=autores
+        this.editoriales=editoriales
+        this.tags=tags
         notifyDataSetChanged()
     }
+    internal fun setAutores(autores: List<Autor>){
+        this.autores = autores
+        notifyDataSetChanged()
+    }
+    internal fun setEditoriales(editoriales: List<Editorial>){
+        this.editoriales = editoriales
+        notifyDataSetChanged()
+    }
+    internal fun setTags(tags: List<Tag>){
+        this.tags = tags
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount() = books.size
 

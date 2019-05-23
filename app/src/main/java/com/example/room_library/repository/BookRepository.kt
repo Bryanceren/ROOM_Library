@@ -15,6 +15,9 @@ class BookRepository(private val bookDao : BookDao, private val autorDao: AutorD
                      private val editorialDao : EditorialDao, private val tagDao: TagDao) {
 
     val allBooks : LiveData<List<Book>> = bookDao.getAllBooks()
+    val allAutors : LiveData<List<Autor>> = autorDao.getAllAutors()
+    val allEditoriales : LiveData<List<Editorial>> = editorialDao.getAllEdit()
+    val allTags : LiveData<List<Tag>> = tagDao.getAllTags()
 
     @WorkerThread
     suspend fun insertBook(book: Book){

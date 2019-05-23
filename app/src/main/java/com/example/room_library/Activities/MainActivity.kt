@@ -10,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.room_library.BookListadapter
+import com.example.room_library.Adapter.BookListadapter
 import com.example.room_library.Models.BookViewModel
 import com.example.room_library.R
 import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
 import com.example.room_library.room.Entities.Editorial
+import com.example.room_library.room.Entities.Tag
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -31,9 +32,20 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
-        bookViewModel.AllBooks.observe(this, Observer { books ->
+        bookViewModel.allBooks.observe(this, Observer { books ->
             books?.let { adapter.setBooks(it) }
         })
+        bookViewModel.allEditoriales.observe(this, Observer { editoriales ->
+            editoriales?.let { adapter.setEditoriales(it) }
+        })
+        bookViewModel.allAutors.observe(this, Observer { books ->
+            books?.let { adapter.setAutores(it) }
+        })
+        bookViewModel.allTags.observe(this, Observer { books ->
+            books?.let { adapter.setTags(it) }
+        })
+
+
         val fab = findViewById<FloatingActionButton>(R.id.add)
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewBookActivity::class.java)
@@ -53,8 +65,8 @@ class MainActivity : AppCompatActivity() {
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY7),
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY),
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY2),
-                    data.getStringExtra(NewBookActivity.EXTRA_REPLY5),
-                    data.getStringExtra(NewBookActivity.EXTRA_REPLY6)
+                    data.getStringExtra(NewBookActivity.EXTRA_REPLY5)
+
                 )
                 val autor=Autor(
                     data.getLongExtra(NewBookActivity.EXTRA_REPLY,0),
@@ -64,9 +76,13 @@ class MainActivity : AppCompatActivity() {
                 val editorial=Editorial(
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY3)
                 )
+                val tag=Tag(
+                    data.getStringExtra(NewBookActivity.EXTRA_REPLY6)
+                )
                 bookViewModel.insertBooks(book)
                 bookViewModel.insertAutors(autor)
                 bookViewModel.insertEditorial(editorial)
+                bookViewModel.insertTag(tag)
             }
         } else {
             Toast.makeText(
