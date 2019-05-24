@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,7 @@ class BookListadapter internal constructor(
         val bookitemViewedicion: TextView = itemView.findViewById(R.id.item_edicion)
         val bookitemViewisbn: TextView = itemView.findViewById(R.id.item_isbn)
         val bookitemViewtags: TextView = itemView.findViewById(R.id.item_tags)
+        val bookitemFav:ImageButton=itemView.findViewById(R.id.fav)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -48,6 +50,28 @@ class BookListadapter internal constructor(
         val current2= autores[position]
         val current3= editoriales[position]
         val current4= tags[position]
+
+        if(current.favorito==0){
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+        }
+        else{
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+        }
+
+        holder.bookitemFav.setOnClickListener {
+            if(current.favorito==0){
+                current.favorito=1
+            }else{
+                current.favorito=0
+            }
+        }
+
+        if(current.favorito==0){
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+        }
+        else{
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+        }
 
         Glide.with(holder.bookitemViewresumen.context)
             .load(current.caratula)
@@ -63,9 +87,6 @@ class BookListadapter internal constructor(
 
     internal fun setBooks(books: List<Book>){
         this.books = books
-        this.autores=autores
-        this.editoriales=editoriales
-        this.tags=tags
         notifyDataSetChanged()
     }
     internal fun setAutores(autores: List<Autor>){
@@ -80,7 +101,13 @@ class BookListadapter internal constructor(
         this.tags = tags
         notifyDataSetChanged()
     }
+    fun changeFavView(){
 
+
+    }
+    fun changeFav(book: Book){
+
+    }
 
     override fun getItemCount() = books.size
 

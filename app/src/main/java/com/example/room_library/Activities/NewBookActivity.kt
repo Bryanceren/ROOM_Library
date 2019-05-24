@@ -53,6 +53,8 @@ class NewBookActivity : AppCompatActivity() {
         editTagsView = findViewById(R.id.edit_tags)
         editCaratulaView = findViewById(R.id.edit_caratula)
 
+
+
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()

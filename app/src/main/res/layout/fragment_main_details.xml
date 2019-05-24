@@ -270,11 +270,6 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_fav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="marcar como favorito" />
 
 
 </LinearLayout>

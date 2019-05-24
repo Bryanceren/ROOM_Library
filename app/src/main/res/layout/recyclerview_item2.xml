@@ -21,21 +21,28 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
-            <ImageView
-                android:layout_weight="1"
-                android:id="@+id/item_image"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_height="match_parent"
-                />
+
             <TextView
-                android:id="@+id/item_title"
+                android:id="@+id/land_item_title"
                 android:text="@string/titulo"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/land_item_autor"
+                android:text="@string/autores"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/land_fav"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/cardview_light_background"
+                android:src="@drawable/ic_favorite_border_black_24dp"/>
         </LinearLayout>
 
     </LinearLayout>
