@@ -18,8 +18,11 @@ interface BookDao {
     @Query("SELECT * FROM Libro")
     fun getAllBooks():LiveData<List<Book>>
 
-    @Query("UPDATE Libro SET L_Favorito = 1 WHERE id = (:id)")
-    fun setFavoriteBook(id: Long)
+    @Query("UPDATE Libro SET L_Favorito = 1 WHERE L_isbn = :isbn")
+    fun setFavoriteBook(isbn: String)
+
+    @Query("UPDATE Libro SET L_Favorito = 0 WHERE L_isbn = :isbn")
+    fun unsetFavoriteBook(isbn: String)
 
     @Query("SELECT * FROM Libro WHERE Libro.L_Favorito = 1")
     fun getFavoriteBooks(): LiveData<List<Book>>

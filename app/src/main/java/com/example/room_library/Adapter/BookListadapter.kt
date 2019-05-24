@@ -27,7 +27,6 @@ class BookListadapter internal constructor(
     private var editoriales= emptyList<Editorial>()
     private var tags= emptyList<Tag>()
 
-
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val bookitemViewimage: ImageView = itemView.findViewById(R.id.item_image)
         val bookitemViewresumen: TextView = itemView.findViewById(R.id.item_resumen)
@@ -46,11 +45,11 @@ class BookListadapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+
         val current = books[position]
         val current2= autores[position]
         val current3= editoriales[position]
         val current4= tags[position]
-
         if(current.favorito==0){
             holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
         }
@@ -62,9 +61,13 @@ class BookListadapter internal constructor(
             if(current.favorito==0){
                 current.favorito=1
                 holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+                /*listenerTools?.managePortraitItemClick(current)*/
+                MainActivity.bookViewModel.setFavoriteBook(current.ISBN)
             }else{
                 current.favorito=0
                 holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+                /*listenerTools?.managePortraitItemClick(current)*/
+                MainActivity.bookViewModel.unsetFavoriteBook(current.ISBN)
 
             }
         }
@@ -97,10 +100,6 @@ class BookListadapter internal constructor(
     internal fun setTags(tags: List<Tag>){
         this.tags = tags
         notifyDataSetChanged()
-    }
-
-    fun changeFav(book: Book){
-
     }
 
     override fun getItemCount() = books.size

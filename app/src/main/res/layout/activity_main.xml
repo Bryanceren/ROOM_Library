@@ -24,7 +24,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main"/>
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"
@@ -34,5 +36,16 @@
         android:layout_margin="20dp"
         android:backgroundTint="@color/design_default_color_primary"
         android:src="@drawable/ic_add_circle_black_24dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_favorite_border_black_24dp"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="start|bottom" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

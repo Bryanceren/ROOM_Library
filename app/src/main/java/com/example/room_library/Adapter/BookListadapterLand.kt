@@ -27,6 +27,7 @@ class BookListadapterLand internal constructor(
     private var books = emptyList<Book>()
     private var autores= emptyList<Autor>()
 
+
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val bookitemViewTitle: TextView = itemView.findViewById(R.id.land_item_title)
         val bookitemViewautores: TextView = itemView.findViewById(R.id.land_item_autor)
@@ -57,9 +58,13 @@ class BookListadapterLand internal constructor(
             if(current.favorito==0){
                 current.favorito=1
                 holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+                /*listenerTools?.managePortraitItemClick(current)*/
+                MainActivity.bookViewModel.setFavoriteBook(current.ISBN)
             }else{
                 current.favorito=0
                 holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+                /*listenerTools?.managePortraitItemClick(current)*/
+                MainActivity.bookViewModel.unsetFavoriteBook(current.ISBN)
 
             }
         }

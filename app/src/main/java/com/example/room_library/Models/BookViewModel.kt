@@ -36,6 +36,12 @@ class BookViewModel (app: Application): AndroidViewModel(app){
     fun insertBooks (book: Book) = viewModelScope.launch(Dispatchers.IO){
         repository.insertBook(book)
     }
+    fun setFavoriteBook (isbn: String) = viewModelScope.launch(Dispatchers.IO){
+        repository.setFavoriteBook(isbn)
+    }
+    fun unsetFavoriteBook (isbn: String) = viewModelScope.launch(Dispatchers.IO){
+        repository.unsetFavoriteBook(isbn)
+    }
 
     fun insertAutors (autor: Autor) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertAutor(autor)

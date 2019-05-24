@@ -8,6 +8,7 @@ import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -29,8 +30,9 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
-    private lateinit var bookViewModel: BookViewModel
-
+    companion object{
+        lateinit var bookViewModel: BookViewModel
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
 
         }
+
         else{
             val recyclerView2 = findViewById<RecyclerView>(R.id.recyclerview2)
             recyclerView2.adapter = adapter2
@@ -72,16 +75,29 @@ class MainActivity : AppCompatActivity() {
             books?.let { adapter2.setAutores(it) }
         })
 
-
         val fab = findViewById<FloatingActionButton>(R.id.add)
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewBookActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
+        var favFlag = 0
+        val fav= findViewById<FloatingActionButton>(R.id.favs)
+        fav.setOnClickListener{
+            if (favFlag==0){
+                fav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+                favFlag=1
+            }else{
+                fav.setImageResource(R.drawable.ic_favorite_black_24dp)
+                favFlag=0
+            }
+
+        }
 
 
 
     }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 
@@ -120,5 +136,6 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
     }
+
 
 }

@@ -23,6 +23,12 @@ class BookRepository(private val bookDao : BookDao, private val autorDao: AutorD
     suspend fun insertBook(book: Book){
         bookDao.insert(book)
     }
+    fun setFavoriteBook(isbn: String){
+        bookDao.setFavoriteBook(isbn)
+    }
+    fun unsetFavoriteBook(isbn: String){
+        bookDao.unsetFavoriteBook(isbn)
+    }
 
     @WorkerThread
     suspend fun insertAutor(autor: Autor){
