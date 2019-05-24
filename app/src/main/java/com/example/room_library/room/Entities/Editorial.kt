@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Editorial")
 data class Editorial (
+    @PrimaryKey(autoGenerate = true)
+    var id:Long,
     @ColumnInfo(name = "E_name") var name : String
 ){
-    @PrimaryKey(autoGenerate = true)
-    var id:Long =0
+    constructor():
+            this(0,"")
 }

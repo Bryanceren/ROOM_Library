@@ -5,11 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.room_library.R
+import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
+import com.example.room_library.room.Entities.Editorial
+import com.example.room_library.room.Entities.Tag
+import kotlinx.android.synthetic.main.fragment_main_details.view.*
 
-/*class MainContentFragment : Fragment() {
-    var book = Book
+class MainContentFragment : Fragment() {
+    var book = Book()
+    var autor = Autor()
+    var tag = Tag()
+    var edit = Editorial()
 
     companion object {
         fun newInstance(book: Book): MainContentFragment{
@@ -30,20 +38,19 @@ import com.example.room_library.room.Entities.Book
 
     fun bindData(view: View){
 
-        view.tv_country.text=coin.country
-        view.tv_isavailable.text=coin.isAvailable.toString()
-        view.tv_name.text=coin.name
-        view.tv_review.text=coin.review
-        view.tv_value.text=coin.value.toString()
-        view.tv_valueus.text=coin.value_us.toString()
-        view.tv_year.text=coin.year.toString()
+        view.autor_main_content_fragment.text = autor.nombre
+        view.isbn_main_content_fragment.text = book.ISBN
+        view.edicion_main_content_fragment.text = book.edicion
+        view.tags_main_content_fragment.text = tag.Tag
+        view.editorial_main_content_fragment.text = edit.name
+        view.resumen_main_content_fragment.text = book.resumen
 
 
-
-        //view.types_main_content_fragment.text = pokemon.types
         Glide.with(view)
-            .load(coin.img)
+            .load(book.caratula)
+            .into(view.image_main_content_fragment)
+            /*
             .placeholder(R.drawable.ic_launcher_background)
-            .into(view.iv_coin2)
+            .into(view.image_main_content_fragment)*/
     }
-}*/
+}

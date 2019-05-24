@@ -16,4 +16,7 @@ data class Book(
     @ColumnInfo(name = "L_resumen") var resumen : String,
     @ColumnInfo(name = "L_Favorito") var favorito : Int = 0
 
-)
+){
+    constructor():
+            this(0, "","","","","",0)
+}

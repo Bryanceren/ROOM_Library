@@ -118,9 +118,11 @@ class MainActivity : AppCompatActivity() {
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY1)
                 )
                 val editorial=Editorial(
+                    data.getLongExtra(NewBookActivity.EXTRA_REPLY,0),
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY3)
                 )
                 val tag=Tag(
+                    data.getLongExtra(NewBookActivity.EXTRA_REPLY,0),
                     data.getStringExtra(NewBookActivity.EXTRA_REPLY6)
                 )
                 bookViewModel.insertBooks(book)

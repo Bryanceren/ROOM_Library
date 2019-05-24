@@ -10,4 +10,7 @@ data class Autor(
     var id:Long =0,
     @ColumnInfo(name = "A_nombre") var nombre : String,
     @ColumnInfo(name = "A_apellido") var apellido : String
-)
+){
+    constructor():
+            this(0, "","")
+}

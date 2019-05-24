@@ -7,8 +7,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Tag")
 data class Tag (
+    @PrimaryKey(autoGenerate = true)
+    var id:Long,
     @ColumnInfo(name = "T_tag") var Tag : String
 ){
-    @PrimaryKey(autoGenerate = true)
-    var id:Long =0
+
+    constructor():
+            this(0, "")
+
 }
