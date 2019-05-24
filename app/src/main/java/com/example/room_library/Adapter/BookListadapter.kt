@@ -61,17 +61,14 @@ class BookListadapter internal constructor(
         holder.bookitemFav.setOnClickListener {
             if(current.favorito==0){
                 current.favorito=1
+                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
             }else{
                 current.favorito=0
+                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+
             }
         }
 
-        if(current.favorito==0){
-            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
-        }
-        else{
-            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
-        }
 
         Glide.with(holder.bookitemViewresumen.context)
             .load(current.caratula)
@@ -101,10 +98,7 @@ class BookListadapter internal constructor(
         this.tags = tags
         notifyDataSetChanged()
     }
-    fun changeFavView(){
 
-
-    }
     fun changeFav(book: Book){
 
     }

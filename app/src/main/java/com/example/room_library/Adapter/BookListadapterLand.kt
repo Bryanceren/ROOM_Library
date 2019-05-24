@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,7 @@ class BookListadapterLand internal constructor(
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val bookitemViewTitle: TextView = itemView.findViewById(R.id.land_item_title)
         val bookitemViewautores: TextView = itemView.findViewById(R.id.land_item_autor)
-
+        val bookitemFav: ImageButton =itemView.findViewById(R.id.land_fav)
 
     }
 
@@ -45,6 +46,23 @@ class BookListadapterLand internal constructor(
         holder.bookitemViewTitle.text = current.titulo
         holder.bookitemViewautores.text = current2.nombre
 
+        if(current.favorito==0){
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+        }
+        else{
+            holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+        }
+
+        holder.bookitemFav.setOnClickListener {
+            if(current.favorito==0){
+                current.favorito=1
+                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
+            }else{
+                current.favorito=0
+                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+
+            }
+        }
 
     }
 
