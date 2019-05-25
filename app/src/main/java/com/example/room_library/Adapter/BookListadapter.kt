@@ -26,6 +26,8 @@ class BookListadapter internal constructor(
     private var autores= emptyList<Autor>()
     private var editoriales= emptyList<Editorial>()
     private var tags= emptyList<Tag>()
+    private var favorite=0
+
 
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val bookitemViewimage: ImageView = itemView.findViewById(R.id.item_image)
@@ -45,11 +47,41 @@ class BookListadapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-
         val current = books[position]
         val current2= autores[position]
         val current3= editoriales[position]
         val current4= tags[position]
+
+        if(this.favorite==1){
+            if(current.favorito==1){
+                Glide.with(holder.bookitemViewresumen.context)
+                    .load(current.caratula)
+                    .into(holder.bookitemViewimage)
+                holder.bookitemViewresumen.text = current.resumen
+                holder.bookitemViewtitle.text = current.titulo
+                holder.bookitemViewedicion.text = current.edicion
+                holder.bookitemViewtags.text = current4.Tag
+                holder.bookitemViewisbn.text = current.ISBN
+                holder.bookitemViewautores.text = current2.nombre
+                holder.bookitemVieweditorial.text=current3.name
+            }
+            else{
+
+            }
+        }
+        else if(this.favorite==0){
+            Glide.with(holder.bookitemViewresumen.context)
+                .load(current.caratula)
+                .into(holder.bookitemViewimage)
+            holder.bookitemViewresumen.text = current.resumen
+            holder.bookitemViewtitle.text = current.titulo
+            holder.bookitemViewedicion.text = current.edicion
+            holder.bookitemViewtags.text = current4.Tag
+            holder.bookitemViewisbn.text = current.ISBN
+            holder.bookitemViewautores.text = current2.nombre
+            holder.bookitemVieweditorial.text=current3.name
+        }
+
         if(current.favorito==0){
             holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
         }
@@ -72,21 +104,20 @@ class BookListadapter internal constructor(
             }
         }
 
-
-        Glide.with(holder.bookitemViewresumen.context)
-            .load(current.caratula)
-            .into(holder.bookitemViewimage)
-        holder.bookitemViewresumen.text = current.resumen
-        holder.bookitemViewtitle.text = current.titulo
-        holder.bookitemViewedicion.text = current.edicion
-        holder.bookitemViewtags.text = current4.Tag
-        holder.bookitemViewisbn.text = current.ISBN
-        holder.bookitemViewautores.text = current2.nombre
-        holder.bookitemVieweditorial.text=current3.name
     }
 
     internal fun setBooks(books: List<Book>){
         this.books = books
+        notifyDataSetChanged()
+    }
+    internal fun setFavBooks(books: List<Book>){
+        for (i in books){
+            if (i.favorito==1)
+                this.books+=i
+        }
+    }
+    internal fun setFavoriteList(flag:Int){
+        this.favorite = flag
         notifyDataSetChanged()
     }
     internal fun setAutores(autores: List<Autor>){

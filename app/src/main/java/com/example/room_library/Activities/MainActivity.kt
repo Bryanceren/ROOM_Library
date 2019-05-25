@@ -36,22 +36,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val adapter2=BookListadapterLand(this)
-        val adapter = BookListadapter(this)
+        var adapter2 = BookListadapterLand(this)
+        var adapter = BookListadapter(this)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-            val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
+        var favFlag = 1
+        val fav= findViewById<FloatingActionButton>(R.id.favs)
+        fav.setOnClickListener{
+            if (favFlag==0){
+                adapter.setFavoriteList(0)
+                adapter2.setFavoriteList(0)
+                start(adapter, adapter2)
+                fav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+                favFlag=1
+            }else{
+                adapter.setFavoriteList(1)
+                adapter2.setFavoriteList(1)
+                start(adapter,adapter2)
+                fav.setImageResource(R.drawable.ic_favorite_black_24dp)
+                favFlag=0
+            }
 
         }
 
-        else{
-            val recyclerView2 = findViewById<RecyclerView>(R.id.recyclerview2)
-            recyclerView2.adapter = adapter2
-            recyclerView2.layoutManager = LinearLayoutManager(this)
 
-        }
+        start(adapter,adapter2)
 
 
 
@@ -80,24 +88,26 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, NewBookActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
-        var favFlag = 0
-        val fav= findViewById<FloatingActionButton>(R.id.favs)
-        fav.setOnClickListener{
-            if (favFlag==0){
-                fav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
-                favFlag=1
-            }else{
-                fav.setImageResource(R.drawable.ic_favorite_black_24dp)
-                favFlag=0
-            }
 
-        }
 
 
 
     }
+    fun start(adapter: BookListadapter,adapter2:BookListadapterLand){
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
 
+        }
 
+        else{
+            val recyclerView2 = findViewById<RecyclerView>(R.id.recyclerview2)
+            recyclerView2.adapter = adapter2
+            recyclerView2.layoutManager = LinearLayoutManager(this)
+
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 

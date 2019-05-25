@@ -24,6 +24,7 @@ class BookListadapterLand internal constructor(
 
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
+    private var favorite=0
     private var books = emptyList<Book>()
     private var autores= emptyList<Autor>()
 
@@ -43,17 +44,26 @@ class BookListadapterLand internal constructor(
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val current = books[position]
         val current2= autores[position]
+        //check if its a favorite adapter
+        if(this.favorite==1){
+            if(current.favorito==1){
+                holder.bookitemViewTitle.text = current.titulo
+                holder.bookitemViewautores.text = current2.nombre
+            }
+        }
+        else{
+            holder.bookitemViewTitle.text = current.titulo
+            holder.bookitemViewautores.text = current2.nombre
+        }
 
-        holder.bookitemViewTitle.text = current.titulo
-        holder.bookitemViewautores.text = current2.nombre
-
+        //check favorite item
         if(current.favorito==0){
             holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
         }
         else{
             holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
         }
-
+        //click listener for each favorite button
         holder.bookitemFav.setOnClickListener {
             if(current.favorito==0){
                 current.favorito=1
@@ -69,8 +79,13 @@ class BookListadapterLand internal constructor(
             }
         }
 
-    }
 
+
+    }
+    internal fun setFavoriteList(flag:Int){
+        this.favorite = flag
+        notifyDataSetChanged()
+    }
     internal fun setBooks(books: List<Book>){
         this.books = books
         notifyDataSetChanged()
