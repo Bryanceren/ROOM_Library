@@ -4,10 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.room_library.Activities.MainActivity
@@ -33,6 +30,8 @@ class BookListadapterLand internal constructor(
         val bookitemViewTitle: TextView = itemView.findViewById(R.id.land_item_title)
         val bookitemViewautores: TextView = itemView.findViewById(R.id.land_item_autor)
         val bookitemFav: ImageButton =itemView.findViewById(R.id.land_fav)
+        val wholeitem: LinearLayout =itemView.findViewById(R.id.item_landscape)
+
 
     }
 
@@ -49,6 +48,9 @@ class BookListadapterLand internal constructor(
             if(current.favorito==1){
                 holder.bookitemViewTitle.text = current.titulo
                 holder.bookitemViewautores.text = current2.nombre
+            }else{
+                holder.wholeitem.removeAllViewsInLayout()
+                holder.wholeitem.visibility=View.GONE
             }
         }
         else{
@@ -65,17 +67,15 @@ class BookListadapterLand internal constructor(
         }
         //click listener for each favorite button
         holder.bookitemFav.setOnClickListener {
-            if(current.favorito==0){
-                current.favorito=1
-                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_black_24dp)
-                /*listenerTools?.managePortraitItemClick(current)*/
-                MainActivity.bookViewModel.setFavoriteBook(current.ISBN)
-            }else{
-                current.favorito=0
-                holder.bookitemFav.setImageResource(R.drawable.ic_favorite_border_black_24dp)
-                /*listenerTools?.managePortraitItemClick(current)*/
-                MainActivity.bookViewModel.unsetFavoriteBook(current.ISBN)
+            if(this.favorite==0) {
 
+                if (current.favorito == 0) {
+                    current.favorito = 1
+                    MainActivity.bookViewModel.setFavoriteBook(current.ISBN)
+                } else {
+                    current.favorito = 0
+                    MainActivity.bookViewModel.unsetFavoriteBook(current.ISBN)
+                }
             }
         }
 
