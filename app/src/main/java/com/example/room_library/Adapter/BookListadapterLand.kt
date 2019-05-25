@@ -1,13 +1,19 @@
 package com.example.room_library.Adapter
 
 import android.content.Context
+import android.content.res.Configuration
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.room_library.Activities.MainActivity
+import com.example.room_library.Fragments.MainContentFragment
 import com.example.room_library.R
 import com.example.room_library.room.Entities.Autor
 import com.example.room_library.room.Entities.Book
@@ -24,6 +30,10 @@ class BookListadapterLand internal constructor(
     private var favorite=0
     private var books = emptyList<Book>()
     private var autores= emptyList<Autor>()
+    private var editoriales= emptyList<Editorial>()
+    private var tags= emptyList<Tag>()
+    private lateinit var fragmentManager: FragmentManager
+    private lateinit var mainContentFragment:MainContentFragment
 
 
     inner class BookViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -43,6 +53,24 @@ class BookListadapterLand internal constructor(
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val current = books[position]
         val current2= autores[position]
+        val current3= editoriales[position]
+        val current4= tags[position]
+
+
+        mainContentFragment = MainContentFragment.newInstance(
+            Book(),
+            Autor(),
+            Tag(),
+            Editorial()
+        )
+
+        changeFragment(R.id.land_main_cont_fragment, mainContentFragment)
+
+        holder.wholeitem.setOnClickListener{
+            mainContentFragment= MainContentFragment.newInstance(current,current2,current4,current3)
+            changeFragment(R.id.land_main_cont_fragment, mainContentFragment)
+        }
+
         //check if its a favorite adapter
         if(this.favorite==1){
             if(current.favorito==1){
@@ -86,12 +114,27 @@ class BookListadapterLand internal constructor(
         this.favorite = flag
         notifyDataSetChanged()
     }
+    fun changeFragment(id: Int, frag: Fragment) {
+        fragmentManager.beginTransaction().replace(id, frag).commit()
+    }
     internal fun setBooks(books: List<Book>){
         this.books = books
         notifyDataSetChanged()
     }
     internal fun setAutores(autores: List<Autor>){
         this.autores = autores
+        notifyDataSetChanged()
+    }
+    internal fun setEditoriales(editoriales: List<Editorial>){
+        this.editoriales = editoriales
+        notifyDataSetChanged()
+    }
+    internal fun setTags(tags: List<Tag>){
+        this.tags = tags
+        notifyDataSetChanged()
+    }
+    internal fun setManager(manager: FragmentManager){
+        this.fragmentManager = manager
         notifyDataSetChanged()
     }
 

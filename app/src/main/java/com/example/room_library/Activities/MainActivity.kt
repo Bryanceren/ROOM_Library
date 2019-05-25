@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
+    val fragmentManager=this.supportFragmentManager
     companion object{
         lateinit var bookViewModel: BookViewModel
     }
@@ -76,13 +78,20 @@ class MainActivity : AppCompatActivity() {
         bookViewModel.allTags.observe(this, Observer { books ->
             books?.let { adapter.setTags(it) }
         })
+
+
         bookViewModel.allBooks.observe(this, Observer { books ->
             books?.let { adapter2.setBooks(it) }
         })
         bookViewModel.allAutors.observe(this, Observer { books ->
             books?.let { adapter2.setAutores(it) }
         })
-
+        bookViewModel.allEditoriales.observe(this, Observer { editoriales ->
+            editoriales?.let { adapter2.setEditoriales(it) }
+        })
+        bookViewModel.allTags.observe(this, Observer { books ->
+            books?.let { adapter2.setTags(it) }
+        })
         val fab = findViewById<FloatingActionButton>(R.id.add)
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewBookActivity::class.java)
@@ -93,6 +102,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
     fun start(adapter: BookListadapter,adapter2:BookListadapterLand){
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
             val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
@@ -104,10 +114,12 @@ class MainActivity : AppCompatActivity() {
         else{
             val recyclerView2 = findViewById<RecyclerView>(R.id.recyclerview2)
             recyclerView2.adapter = adapter2
+            adapter2.setManager(fragmentManager)
             recyclerView2.layoutManager = LinearLayoutManager(this)
 
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 

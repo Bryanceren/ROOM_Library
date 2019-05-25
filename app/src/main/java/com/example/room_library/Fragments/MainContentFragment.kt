@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.example.room_library.R
 import com.example.room_library.room.Entities.Autor
@@ -20,9 +21,12 @@ class MainContentFragment : Fragment() {
     var edit = Editorial()
 
     companion object {
-        fun newInstance(book: Book): MainContentFragment{
+        fun newInstance(book: Book,autor: Autor,tag: Tag,editorial: Editorial): MainContentFragment{
             val newFragment = MainContentFragment()
             newFragment.book = book
+            newFragment.autor = autor
+            newFragment.tag = tag
+            newFragment.edit = editorial
             return newFragment
         }
     }
